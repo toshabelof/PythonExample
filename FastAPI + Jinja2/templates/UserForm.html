@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр пользователя</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+<div class="ui column centered grid">
+    <div class="fifteen wide column">
+        <div class="ui top menu">
+            <a class="active item" href="/users">Пользователи</a>
+            <a class="item" href="/clients">Клиенты</a>
+            <a class="item" href="/products">Товары</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="ui column centered grid">
+    <div class="fifteen wide column">
+        <div class="ui grid">
+            <div class="two column row">
+                <div class="left floated column">
+                    <div class="ui breadcrumb">
+                        <a class="section" href="/">Главная</a>
+                        <div class="divider"> /</div>
+                        <a class="section" href="/users/">Пользователи</a>
+                        <div class="divider"> /</div>
+                        <div class="active section">{{ user.fio }}</div>
+                    </div>
+                </div>
+                {% if readonly %}
+                <form>
+                    <div class="right floated column right aligned segment">
+                        <button class="ui basic button" formmethod="get" formaction="/users/{{ user.isn }}">
+                            <i class="icon edit"></i>
+                            Изменить
+                        </button>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="ui left aligned segment">
+            <form class="ui form" method="post" action="/users/{{ user.isn }}">
+                <div class="field four wide">
+                    <label>Логин</label>
+                    {% if readonly %}
+                    <input readonly="" type="text" name="login" placeholder="userlogin" value="{{ user.login }}">
+                    {% else %}
+                    <input type="text" name="login" placeholder="userlogin" value="{{ user.login }}">
+                    {% endif %}
+                </div>
+                <div class="field four wide">
+                    <label>Пароль</label>
+                    {% if readonly %}
+                    <input readonly="" type="password" name="password" placeholder="pass1234"
+                           value="{{ user.password }}">
+                    {% else %}
+                    <input type="password" name="password" placeholder="pass1234" value="{{ user.password }}">
+                    {% endif %}
+                </div>
+                <div class="field four wide">
+                    <label>Фамилия Имя Отчество</label>
+                    {% if readonly %}
+                    <input readonly="" type="text" name="fio" placeholder="Иванов Иван Иванович" value="{{ user.fio }}">
+                    {% else %}
+                    <input type="text" name="fio" placeholder="Иванов Иван Иванович" value="{{ user.fio }}">
+                    {% endif %}
+                </div>
+                <div class="field four wide">
+                    <label>Дата рождения</label>
+                    {% if readonly %}
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input readonly="" type="date" name="birthday" placeholder="01.01.1990"
+                               value="{{ user.birthday }}">
+                    </div>
+                    {% else %}
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input type="text" name="birthday" placeholder="01.01.1990"
+                               value="{{ user.birthday }}">
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="field four wide">
+                    <label>Телефон</label>
+                    {% if readonly %}
+                    <input readonly="" type="text" name="phone_number" placeholder="+7(999)999-99-99"
+                           value="{{ user.phone_number }}">
+                    {% else %}
+                    <input type="text" name="phone_number" placeholder="+7(999)999-99-99"
+                           value="{{ user.phone_number }}">
+                    {% endif %}
+                </div>
+                <div class="field six wide">
+                    <label>Email</label>
+                    {% if readonly %}
+                    <input readonly="" type="text" name="email" placeholder="example@ya.ru" value="{{ user.email }}">
+                    {% else %}
+                    <input type="text" name="email" placeholder="example@ya.ru" value="{{ user.email }}">
+                    {% endif %}
+                </div>
+                <div class="field four wide">
+                    <label>Дата регистрации</label>
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input readonly="" type="text" name="reg_date" placeholder="01.01.1990"
+                               value="{{ user.reg_date }}">
+                    </div>
+
+                </div>
+                <div class="field four wide">
+                    <label>Последний визит</label>
+                    <div class="ui input left icon">
+                        <i class="calendar icon"></i>
+                        <input readonly="" type="text" name="last_date" placeholder="01.01.1990"
+                               value="{{ user.last_date }}">
+                    </div>
+                </div>
+                {% if not readonly %}
+                <button class="ui button" type="submit">Сохранить</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    $('#standard_calendar')
+    .calendar()
+    ;
+</script>
+</html>

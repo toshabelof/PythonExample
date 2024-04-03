@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+<div class="ui column centered grid">
+    <div class="fifteen wide column">
+        <div class="ui top menu">
+            <a class="active item" href="/users">Пользователи</a>
+            <a class="item" href="/clients">Клиенты</a>
+            <a class="item" href="/products">Товары</a>
+        </div>
+    </div>
+</div>
+
+<div class="ui column centered grid">
+    <div class="fifteen wide column">
+        <div class="ui grid">
+            <div class="two column row">
+                <div class="left floated column">
+                    <div class="ui breadcrumb">
+                        <a class="section" href="/">Главная</a>
+                        <div class="divider"> /</div>
+                        <div class="active section">Пользователи</div>
+                    </div>
+                </div>
+                <div class="right floated column right aligned segment">
+                    <button class="ui basic button">
+                        <i class="icon user"></i>
+                        Добавить пользователя
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui center aligned segment">
+            <table class="ui single line table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ФИО</th>
+                    <th>Дата рождения</th>
+                    <th>Номер телефона</th>
+                    <th>Email</th>
+                    <th>Логин</th>
+                    <th>Пароль</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users_list %}
+                <tr>
+                    <td>{{ user.isn }}</td>
+                    <td>{{ user.fio }}</td>
+                    <td>{{ user.birthday }}</td>
+                    <td>{{ user.phone_number }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.login }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>
+                        <form>
+                            <button class="ui basic icon button" formmethod="get" formaction="/users/ro/{{ user.isn }}">
+                                <i class="icon external square alternate"></i>
+                            </button>
+                            <button class="ui basic icon button" formmethod="post"
+                                    formaction="/users/delete/{{ user.isn }}">
+                                <i class="icon trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

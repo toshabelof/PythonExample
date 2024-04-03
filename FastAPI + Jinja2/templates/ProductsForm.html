@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои товары</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<body>
+<div class="ui column centered grid">
+    <div class="fifteen wide column">
+        <div class="ui top menu">
+            <a class=" item" href="/users">Пользователи</a>
+            <a class="item" href="/clients">Клиенты</a>
+            <a class="active item" href="/products">Товары</a>
+        </div>
+    </div>
+</div>
+
+<div class="ui column centered grid">
+    <div class="fifteen wide column">
+        <div class="ui grid">
+            <div class="two column row">
+                <div class="left floated column">
+                    <div class="ui breadcrumb">
+                        <a class="section" href="/">Главная</a>
+                        <div class="divider"> /</div>
+                        <div class="active section">Товары</div>
+                    </div>
+                </div>
+                <div class="right floated column right aligned segment">
+                    <button class="ui basic button">
+                        <i class="icon user"></i>
+                        Добавить товар
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui center aligned segment">
+            <table class="ui single line table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Наименование</th>
+                    <th>Ед.измерения</th>
+                    <th>Себестоимость</th>
+                    <th>Цена</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in product_list %}
+                <tr>
+                    <td>{{ product.isn }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.unit }}</td>
+                    <td>{{ product.cost_price }}</td>
+                    <td>{{ product.selling_price }}</td>
+                    <td>
+                        <button class="ui basic icon button" formaction="/products/{{ product.isn }}">
+                            <i class="icon external square alternate"></i>
+                        </button>
+                        <button class="ui basic icon button" formaction="/products/{{ product.isn }}">
+                            <i class="icon trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

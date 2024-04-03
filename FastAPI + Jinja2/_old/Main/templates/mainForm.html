@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <style>
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+    <body>
+        <p>Привет, {{ user.fio }}! <a href="/logout">LogOut</a></p>
+
+        <form action="" method="get">
+            <button type="submit" formaction="/users/">Пользователи</button>
+            <button type="submit" formaction="/clients/">Клиенты</button>
+            <button type="submit" formaction="/products/">Товары</button>
+        </form>
+    </body>
+</html>

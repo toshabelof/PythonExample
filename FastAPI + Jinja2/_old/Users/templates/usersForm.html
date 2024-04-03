@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <style>
+      table, th, td {
+          border: 1px solid black;
+        }
+    </style>
+</head>
+    <body>
+        <a href="/users/add">
+            <button>Добавить</button>
+        </a>
+        <table style="border: 1px solid black">
+            <tr>
+                <th>id</th>
+                <th>Логин</th>
+                <th>Пароль</th>
+                <th>ФИО</th>
+                <th>Дата рождения</th>
+                <th>Телефон</th>
+            </tr>
+            {% for user in users_list %}
+            <tr>
+                <th>{{ user.id }}</th>
+                <th>{{ user.login }}</th>
+                <th>{{ user.password }}</th>
+                <th>{{ user.fio }}</th>
+                <th>{{ user.birthday }}</th>
+                <th>{{ user.phone_number }}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
